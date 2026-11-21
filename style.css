@@ -166,6 +166,8 @@ pre.code .gdim { color: var(--gdim); } pre.code .idx { color: var(--idx); } pre.
 .legend li { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 13px; font-weight: 700; }
 .legend i { width: 12px; height: 12px; border-radius: 2px; background: var(--c); box-shadow: inset 0 0 0 1px rgba(22, 32, 28, .25); }
 .hint { margin: 14px 0 0; font-size: 14px; color: var(--muted); }
+.about { margin: 14px 0 0; font-size: 14px; color: var(--muted); max-width: 62ch; }
+.about code { font-family: var(--mono); font-size: .9em; font-variant-ligatures: none; }
 .hint .tc { display: none; }
 @media (pointer: coarse) { .hint .kb { display: none; } .hint .tc { display: inline; } }
 
