@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#dde3dd">
+<meta name="description" content="Анимированный разбор CUDA: нити, блоки и сетка, цикл с шагом stride, варпы, замер времени и задачи на изменённое ядро.">
+<title>CUDA в картинках</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%231c2924'/%3E%3Cg fill='%23F7D96F'%3E%3Crect x='6' y='8' width='5' height='6' rx='1'/%3E%3Crect x='13.5' y='8' width='5' height='6' rx='1'/%3E%3Crect x='21' y='8' width='5' height='6' rx='1'/%3E%3C/g%3E%3Cg fill='%2358C4DD'%3E%3Crect x='6' y='18' width='5' height='6' rx='1'/%3E%3Crect x='13.5' y='18' width='5' height='6' rx='1'/%3E%3Crect x='21' y='18' width='5' height='6' rx='1'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+	<header class="top">
+		<h1>CUDA в картинках</h1>
+		<p>Как ядро делит массив между нитями. Десять глав, каждая по шагам.</p>
+	</header>
+
+	<nav class="chap" id="chap" aria-label="Главы"></nav>
+
+	<main class="stagecol">
+		<div class="board" id="board"><canvas id="cv" role="img" aria-label="Анимация"></canvas></div>
+		<div class="tray" id="tray">
+			<button id="prev" class="ic" type="button" aria-label="Предыдущий шаг">
+				<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+			</button>
+			<button id="again" class="ic" type="button" aria-label="Повторить шаг">
+				<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12a7 7 0 1 1-2.05-4.95"/><path d="M19 4v4.5h-4.5"/></svg>
+			</button>
+			<div class="dots" id="dots"></div>
+			<button id="auto" type="button" aria-pressed="false">Авто</button>
+			<button id="next" class="main" type="button"><span id="nextT">Далее</span>
+				<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+			</button>
+		</div>
+	</main>
+
+	<aside class="panel" id="panel">
+		<h2 id="ttl"></h2>
+		<p class="stp" id="stp"></p>
+		<div class="cap" id="cap" aria-live="polite"></div>
+		<div class="ui" id="ui"></div>
+		<pre class="code" id="code"></pre>
+		<div class="legend">
+			<p>Одна переменная — один цвет на доске, в тексте и в коде:</p>
+			<ul>
+				<li><i style="--c: var(--tid)"></i><span class="tid">threadIdx</span></li>
+				<li><i style="--c: var(--bid)"></i><span class="bid">blockIdx</span></li>
+				<li><i style="--c: var(--bdim)"></i><span class="bdim">blockDim</span></li>
+				<li><i style="--c: var(--gdim)"></i><span class="gdim">gridDim</span></li>
+				<li><i style="--c: var(--idx)"></i><span class="idx">idx</span></li>
+				<li><i style="--c: var(--str)"></i><span class="str">stride</span></li>
+				<li><i style="--c: var(--i)"></i><span class="iv">i</span></li>
+			</ul>
+		</div>
+		<p class="hint"><span class="kb">Стрелки и пробел листают шаги, R повторяет шаг.</span><span class="tc">Свайп по доске листает шаги, касание открывает следующий.</span></p>
+	</aside>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
